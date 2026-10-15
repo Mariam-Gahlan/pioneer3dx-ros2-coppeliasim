@@ -1,0 +1,39 @@
+name: ROS 2 CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    container:
+      image: ros:jazzy
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout into a colcon workspace
+        uses: actions/checkout@v4
+        with:
+          path: ros2_ws/src/pioneer_control
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          rosdep update
+          rosdep install --from-paths ros2_ws/src --ignore-src -y
+
+      - name: Build
+        working-directory: ros2_ws
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build --packages-select pioneer_control
+
+      - name: Lint and test
+        working-directory: ros2_ws
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon test --packages-select pioneer_control --event-handlers console_direct+
+          colcon test-result --verbose
