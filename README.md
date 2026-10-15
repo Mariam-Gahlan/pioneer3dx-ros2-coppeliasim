@@ -161,3 +161,6 @@ ros2 topic pub -r 10 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.2}, angula
 | Terminal acts strangely after a crash | Type `reset` and press Enter. |
 
 
+   **Demo video:**
+   https://youtu.be/-KO93iTG9uo 
+
