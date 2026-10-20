@@ -151,15 +151,6 @@ ros2 topic echo /cmd_vel
 ros2 topic pub -r 10 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.2}, angular: {z: 0.0}}"
 ```
 
-| Problem | Fix |
-|---|---|
-| `require('simROS2')` error / no topics | Start CoppeliaSim from a terminal with ROS 2 sourced; press ▶ Play. |
-| `object does not exist` in the Lua script | Robot/children named differently — fix the paths in the script. |
-| Robot ignores keys | Click the teleop terminal so it has keyboard focus. |
-| All bars stay at 1.0 | Obstacles not **Detectable**, or farther than 1 m. |
-| Plot window never appears | `sudo apt install python3-tk`; on Wayland try `export MPLBACKEND=TkAgg`. |
-| Terminal acts strangely after a crash | Type `reset` and press Enter. |
-
 
    **Demo video:**
    https://youtu.be/-KO93iTG9uo 
